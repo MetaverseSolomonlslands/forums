@@ -26,8 +26,16 @@ div{
     <title>Document</title>
 </head>
 <body>
- <div>
-   <iframe src="https://solomons.discoursehosting.net/" frameborder="0" width="100%" scrolling="auto" style="margin-top: -4px;"οnlοad="this.style.height=document.body.clientHeight-84" ></iframe>
+ <div >
+   <iframe id="test" src="https://solomons.discoursehosting.net/" frameborder="0" width="100%"  height="1000px" scrolling="no" style="margin-top: -4px;"οnlοad="this.style.height=document.body.clientHeight-84" ></iframe>
     </div>
+    <script type="text/javascript">
+      function init() {
+var totalHeight = window.innerHeight || document.body.clientHeight
+var testObj= document.getElementById('test')
+var halfHeight= totalHeight
+testObj.style.height = halfHeight+ 'px'
+}
+    </script>
 </body>
 </html>
