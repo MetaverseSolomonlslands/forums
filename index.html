@@ -3,127 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    
     
     <title>Document</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm bg-light">
-  		<div>
-  			<span></span>
-  		</div>
-  	
-  </nav>
-  <div>
-  	<h5>account:<span class="showAccout" id="accountSpan"></span></h5>
-  	<h5>network:<span class="showAccout" id="networkSpan"></span></h5>
-  	<h5>chainid:<span class="showAccout" id="chainidSpan"></span></h5>
-  	<button class="navbtn btn2" id="Connectwallet" onclick="check()">Connect wallet</button>
-  </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script   src="./jquery.js"></script>
-    <script>
+ 
+    <div id='discourse-comments'></div>
 
-    	
+<script type="text/javascript">
+  DiscourseEmbed = { discourseUrl: 'https://solomons.discoursehosting.net/',
+                     discourseEmbedUrl: 'https://forums.solomanislands.com/' };
 
-    
-    	function check(){
-    		console.log("sss")
-
-    		const isMetaMaskIntalled = ()=>{
-    			console.log("isMetaMaskIntalled");
-    		const { ethereum } = window;
-	    		if (typeof ethereum === 'undefined') {
-	    			return false;
-	    		}
-	    		return Boolean(ethereum && ethereum.isMetaMask);
-	    	}
-
-	    	const getAccount = async () =>{
-	    		try{
-	    			const accounts = await ethereum.request({method:'eth_requestAccounts'});
-	    			//accountSpan.innerHTML = accounts; 
-	    			var data = {
-			            value: accounts
-			        }
-			        sessionStorage["MetaMask"] = JSON.stringify(data)
-			         var button =  document.getElementById("Connectwallet");
-					button.onclick = null;
-					button.innerHTML = accounts;
-	    		}catch(error){
-	    			console.error(error);
-	    		}
-	    	}
-	    	const getNetworkdAndChainId = async () =>{
-	    		try{
-	    			const chainidSpan = await ethereum.request({method:'eth_chainId'});
-	    			//chainidSpan.innerHTML = chainidSpan; 
-	    			const networkSpan = await ethereum.request({method:'net_version'});
-	    			//networkSpan.innerHTML = networkSpan; 
-	    			console.log(networkSpan);
-	    			console.log(chainidSpan);
-	    			var chainidSpandata = {
-			            value: chainidSpan
-			        }
-			        sessionStorage["MetaMaskchainid"] = JSON.stringify(chainidSpandata)
-			        var networkdata = {
-			            value: networkSpan
-			        }
-			        sessionStorage["MetaMasknetwork"] = JSON.stringify(networkdata)
-	    		}catch{
-					console.error(error);
-	    		}
-	    	} 
-    		const checkMetaMaskClient = async () =>{
-    			console.log("checkMetaMaskClient");
-    			if (!isMetaMaskIntalled()) {
-    				alert("please install metamask");
-    			}else{
-    				getNetworkdAndChainId();
-    				getAccount();
-    			}
-    		}
-    		checkMetaMaskClient();
-    	
-    	
-
-    	}
-	
-    	
-    </script>
-     <script type="text/javascript">
-  
-    window.onload=function(){ 
-    	 var data = sessionStorage['MetaMask'];
-    	 console.log("data "+ data)
-    	 //判断session 里有无钱包地址
-        if (data == "undefined" || !data || data === "null") {
-            //无
-            console.log("wu")
-            return ;
-            //checkMetaMaskClient();
-        }
-        //return JSON.parse(data).value;
-
-       //var seesionMetaMask = @_session.get('MetaMask');
-       var MetaMaskaddress =  JSON.parse(data).value;
-       console.log("seesionMetaMask" + MetaMaskaddress);
-       var button =  document.getElementById("Connectwallet");
-		button.onclick = null;
-		button.innerHTML = MetaMaskaddress;
-        //document.getElementById("Connectwallet").text("ssss")
-    };
-    function show(object){
-       var s = document.getElementById("modaBJ");
-      if (object==1) {
-        s.style.display="block";
-      } 
-      if (object== 2) {
-        
-        s.style.display="none";
-      }
-    }
-  </script>
+  (function() {
+    var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+  })();
+</script>
     
 </body>
 </html>
